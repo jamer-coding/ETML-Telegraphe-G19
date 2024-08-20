@@ -1,0 +1,32 @@
+# 
+# Composition docker pour MySQL et PHPMyAdmin
+
+services:
+
+  # TODO : compléter la création du service db. L'image de base doit être mysql 8.0.30
+  # un mot de passe root fort doit être choisi.
+  # Le port par défaut de mysql doit être mappé sur un port disponible de l'hôte Windows
+  # Un volume "dbdata" doit être utilisé pour préserver les données entre chaque redémarrage du container.
+  # Finalement, on souhaite que le script setup_telegraph.sql initialise le serveur.
+  
+  db:
+    # A compléter
+  phpmyadmin:
+    image: phpmyadmin:5.2.0
+    container_name: pma_container
+    links:
+      - db
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_ARBITRARY: 1
+    restart: always
+    ports:
+      - "8081:80"
+      
+# The database will be persistent among containers restarts.
+volumes:
+  dbdata:
+
+
+  
