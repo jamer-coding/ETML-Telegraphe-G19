@@ -1,5 +1,4 @@
 let pressStartTime = 0;
-let isTimerRunning = false
 let currentBitPos = 0;
 let bitsSaved = [0, 0, 0, 0, 0, 0, 0, 0];
 
@@ -17,32 +16,21 @@ function stopSound(telegraphAudio) {
 }
 
 function stopTimer(){
-    isTimerRunning = false
 
-    pressDuration = pressStartTime
+    pressDuration = pressStartTime - Date.now();
     
     /* TODO : A compléter */
     return pressDuration;
 }
 
-function incrementTimer(){
-    pressStartTime += 1;
-}
 
 function startTimer(){
-    isTimerRunning = true;
-
-    pressStartTime = 0;
-    
-    let Timer = setTimeout(incrementTimer, 1)
-
-    if (isTimerRunning === false) {
-        clearTimeout(Timer)
-    }
+    pressStartTime = Date.now();
 }
 
 async function changeToDown(telegraphButton, telegraphAudio) {
-    
+    startTimer();
+
     /* TODO : A compléter */
     await playSound(telegraphAudio);    
 }
@@ -54,6 +42,8 @@ function sampleBit(timePressed){
 }
 
 function changeToUp(telegraphButton, telegraphAudio) {
+    stopTimer();
+
     /* TODO : A compléter */    
 }
 
@@ -73,8 +63,6 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
         stopSound,
         changeToDown,
         changeToUp,
-        mouseDown,
-        mouseUp
     };
 }
 
