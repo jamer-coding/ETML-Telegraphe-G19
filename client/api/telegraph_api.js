@@ -1,5 +1,5 @@
 let pressStartTime = 0;
-let currentBit = 0;
+let currentBitPos = 0;
 let bitsSaved = [0, 0, 0, 0, 0, 0, 0, 0];
 let currentLength = 0
 
@@ -44,9 +44,9 @@ function changeToUp(telegraphButton, telegraphAudio) {
     let time = stopTimer();
 
     if (time <= 200) {
-        currentBit = 0
+        currentBitPos = 0
     } else {
-        currentBit = 1
+        currentBitPos = 1
     }
 
     accumulateBits(currentBitPos)
@@ -58,12 +58,15 @@ function accumulateBits(newBit) {
     if (currentLength != 8 && currentLength + 1 != 8) {
         bitsSaved[currentLength] = newBit
         currentLength += 1
-    } else {
+    } else if (currentLength != 8) {
         bitsSaved[currentLength] = newBit
 
         calculateAscii(bitsSaved)
         currentLength = 0
-    } 
+    } else {
+        calculateAscii(bitsSaved)
+        currentLength = 0
+    }
 
     /* TODO : A compléter */
 
