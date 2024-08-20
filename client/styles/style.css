@@ -11,7 +11,26 @@ h1 {
     margin-bottom: 20px;
 }
 
-button {
-    size:378px, 248px;
+button{
+    width: 378px;
+    height: 248px;
+}
+
+#telegraphButton {
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    background: url("../media/telegraph_up.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#telegraphButton:active {
+    background: url("../media/telegraph_down.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#telegraphButton:active:after {
+    background: url("../media/telegraph_up.png");
+    background-repeat: no-repeat;
+    background-size: cover;
 }

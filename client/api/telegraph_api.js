@@ -1,4 +1,5 @@
 let pressStartTime = 0;
+let isTimerRunning = false
 let currentBitPos = 0;
 let bitsSaved = [0, 0, 0, 0, 0, 0, 0, 0];
 
@@ -16,14 +17,37 @@ function stopSound(telegraphAudio) {
 }
 
 function stopTimer(){
+    isTimerRunning = false
+
+    pressDuration = pressStartTime
+    
     /* TODO : A compléter */
     return pressDuration;
 }
 
-function startTimer(){
-    /* TODO : A compléter */
+function incrementTimer(){
+    if (isTimerRunning) {
+        pressStartTime += 1;
+    }
 }
 
+function startTimer(){
+    isTimerRunning = true;
+
+    pressStartTime = 0;
+    
+    let Timer = setTimeout(incrementTimer, 1)
+
+    Timer.
+}
+
+function onClick(){
+
+}
+
+function mouseDown(params){
+
+}
 
 async function changeToDown(telegraphButton, telegraphAudio) {
     
