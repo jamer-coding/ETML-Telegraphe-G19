@@ -38,7 +38,7 @@ function startTimer(){
     
     let Timer = setTimeout(incrementTimer, 1)
 
-    Timer.
+    clearTimeout(Timer)
 }
 
 function onClick(){
