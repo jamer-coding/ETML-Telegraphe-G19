@@ -17,8 +17,9 @@ function stopSound(telegraphAudio) {
 
 function stopTimer(){
 
-    pressDuration = pressStartTime - Date.now();
+    pressDuration = Date.now() - pressStartTime;
     
+    console.log(pressDuration)
     /* TODO : A compléter */
     return pressDuration;
 }

@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', async (event) => {
     // Gestion du click de la souris
     telegraphButton.addEventListener('mousedown', async (event) => {
         event.preventDefault();
-        console.log("mousedown");
         isMouseDownOnButton = true;
         await changeToDown(telegraphButton, telegraphAudio);
     });
@@ -31,7 +30,6 @@ document.addEventListener('DOMContentLoaded', async (event) => {
     // Gestion du relâchement de la souris
     document.addEventListener('mouseup', (event) => {
         if (isMouseDownOnButton) { 
-            console.log("mouseup");
             changeToUp(telegraphButton, telegraphAudio);
             isMouseDownOnButton = false; 
         }
