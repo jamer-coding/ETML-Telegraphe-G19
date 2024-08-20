@@ -1,3 +1,5 @@
+const { changeToDown } = require("./api/telegraph_api");
+
 let audioLoaded = false;
 let isMouseDownOnButton = false; 
 
@@ -13,8 +15,13 @@ document.addEventListener('DOMContentLoaded', async (event) => {
     /* TODO : A compléter, ajouter un écouteur d'évenement lorsque la souris descend */
     
     
-    
-
+    // Gestion du click de la souris
+    document.addEventListener('mousedown', async (event) => {
+        event.preventDefault();
+        isMouseDownOnButton = true;
+        await changeToDown(telegraphButton, telegraphAudio);
+    });
+        
     // Gestion du touchstart sur mobile
     telegraphButton.addEventListener('touchstart', async (event) => {
         event.preventDefault();

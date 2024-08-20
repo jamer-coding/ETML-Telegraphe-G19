@@ -26,9 +26,7 @@ function stopTimer(){
 }
 
 function incrementTimer(){
-    if (isTimerRunning) {
-        pressStartTime += 1;
-    }
+    pressStartTime += 1;
 }
 
 function startTimer(){
@@ -38,15 +36,9 @@ function startTimer(){
     
     let Timer = setTimeout(incrementTimer, 1)
 
-    clearTimeout(Timer)
-}
-
-function onClick(){
-
-}
-
-function mouseDown(params){
-
+    if (isTimerRunning === false) {
+        clearTimeout(Timer)
+    }
 }
 
 async function changeToDown(telegraphButton, telegraphAudio) {
@@ -80,7 +72,9 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
         playSound,
         stopSound,
         changeToDown,
-        changeToUp
+        changeToUp,
+        mouseDown,
+        mouseUp
     };
 }
 
