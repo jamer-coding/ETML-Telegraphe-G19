@@ -1,6 +1,7 @@
 let pressStartTime = 0;
 let currentBitPos = 0;
 let bitsSaved = [0, 0, 0, 0, 0, 0, 0, 0];
+let currentLength = 0
 
 async function playSound(telegraphAudio) {
     telegraphAudio.currentTime = 0;
@@ -15,47 +16,66 @@ function stopSound(telegraphAudio) {
     telegraphAudio.pause();
 }
 
-function stopTimer(){
+function stopTimer() {
 
     pressDuration = Date.now() - pressStartTime;
-    
-    console.log(pressDuration)
+
     /* TODO : A compléter */
     return pressDuration;
 }
 
 
-function startTimer(){
+function startTimer() {
     pressStartTime = Date.now();
 }
 
 async function changeToDown(telegraphButton, telegraphAudio) {
     startTimer();
 
-    /* TODO : A compléter */
-    await playSound(telegraphAudio);    
+    await playSound(telegraphAudio);
 }
 
-function sampleBit(timePressed){    
-    
-    /* TODO : A compléter */
+function sampleBit(timePressed) {
+
     return currentBit;
 }
 
 function changeToUp(telegraphButton, telegraphAudio) {
-    stopTimer();
+    let time = stopTimer();
 
-    /* TODO : A compléter */    
+    if (time <= 200) {
+        currentBitPos = 0
+    } else {
+        currentBitPos = 1
+    }
+
+    accumulateBits(currentBitPos)
+
+    /* TODO : A compléter */
 }
 
-function accumulateBits(newBit){
-    
+function accumulateBits(newBit) {
+    if (currentLength != 8 && currentLength + 1 != 8) {
+        bitsSaved[currentLength] = newBit
+        currentLength += 1
+    } else if (currentLength != 8) {
+        bitsSaved[currentLength] = newBit
+
+        calculateAscii(bitsSaved)
+        currentLength = 0
+    } else {
+        calculateAscii(bitsSaved)
+        currentLength = 0
+    }
+
     /* TODO : A compléter */
-    
+
 }
 
-function calculateAscii(bitsArray){
+function calculateAscii(bitsArray) {
     /* TODO : A compléter */
+    console.log(bitsArray)
+    clearBitsSaved()
 }
 
 if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
@@ -68,10 +88,10 @@ if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
 }
 
 // Ne pas modifier ces deux fonctions
-function getBitsSaved(){
+function getBitsSaved() {
     return bitsSaved;
 }
 
-function clearBitsSaved(){
+function clearBitsSaved() {
     bitsSaved = [0, 0, 0, 0, 0, 0, 0, 0];
 }
